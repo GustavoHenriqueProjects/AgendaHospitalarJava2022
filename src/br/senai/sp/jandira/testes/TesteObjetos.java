@@ -48,7 +48,7 @@ public class TesteObjetos {
 
         Especialidade e2 = new Especialidade();
         e2.setNome("Gastroenterologia");
-        e2.setDescricao("dor de barriga");
+        e2.setDescricao("Cuida da dor de barriga");
 
         EspecialidadeDAO.gravar(e2);
 
@@ -61,8 +61,8 @@ public class TesteObjetos {
         EspecialidadeDAO.gravar(e3);
 
 //	JOptionPane.showMessageDialog(null, e1.getNome());
-        Especialidade e4 = new Especialidade("Otorrino", "cuida do ouvido");
-        Especialidade e5 = new Especialidade("Pediatria", "cuida das crianças");
+        Especialidade e4 = new Especialidade("Otorrino", "Cuida do ouvido");
+        Especialidade e5 = new Especialidade("Pediatria", "Cuida das crianças");
         EspecialidadeDAO.gravar(e4);
         EspecialidadeDAO.gravar(e5);
 

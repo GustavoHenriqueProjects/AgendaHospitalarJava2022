@@ -5,6 +5,7 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.EspecialidadeDAO;
+import br.senai.sp.jandira.model.Especialidade;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -74,7 +75,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
         add(scroolEspecialidades);
         scroolEspecialidades.setBounds(30, 40, 680, 210);
 
-        buttobEditarEspecialidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/edit32.png"))); // NOI18N
+        buttobEditarEspecialidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/editar.png"))); // NOI18N
         buttobEditarEspecialidade.setToolTipText("Editar  especialidade selecionada");
         buttobEditarEspecialidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,9 +107,6 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
             
     }//GEN-LAST:event_buttonExcluirEspecialidadesActionPerformed
     private void excluirEspecialidade(){
-
-        String codigoStr = tableEspecialidades.getValueAt( linha, 0).toString();
-        Integer codigo = Integer.valueOf(codigoStr);
          
         int resposta =   JOptionPane.showConfirmDialog(this,
                 "Você confirma a exclusão?",
@@ -116,14 +114,21 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
                  JOptionPane.YES_NO_OPTION);
         
         if (resposta ==0){
-          EspecialidadeDAO.excluir(codigo);
+          EspecialidadeDAO.excluir(getCodigo());
             preencherTabela();
         }
         
         //Para saber se é sim ou nao que o usuario digito
-        //System.out.println(resposta);
-          
+        //System.out.println(resposta);  
 }
+    
+    private Integer getCodigo(){
+    String codigoStr = tableEspecialidades.getValueAt( getLinha(), 0).toString();
+    Integer codigo = Integer.valueOf(codigoStr);
+    
+    return codigo;
+}
+    
     private void buttobEditarEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttobEditarEspecialidadeActionPerformed
        
         if(getLinha() != -1){
@@ -140,8 +145,10 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
 
     private void editarEspecialidade(){
     
+        Especialidade especialidade = EspecialidadeDAO.getEspecialidade(getCodigo());
+        
         EspecialidadeDialog especialidadeDialog = 
-        new EspecialidadeDialog(null, true );
+        new EspecialidadeDialog(null, true, especialidade );
         
         especialidadeDialog.setVisible(true);
         //Atualiza a lista
