@@ -5,6 +5,8 @@ import java.time.LocalDate;
 public class PlanoDeSaude {
 
 	//atributos
+        private static int contador = 0;
+        private Integer codigo;
 	private String operadora;
 	private String categoria;
 	private String numero;
