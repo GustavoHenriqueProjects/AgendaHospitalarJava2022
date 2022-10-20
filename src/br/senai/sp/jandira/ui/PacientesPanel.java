@@ -74,6 +74,11 @@ public class PacientesPanel extends javax.swing.JPanel {
 
         buttonAdicionarEspecialidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/Button-Adicionar.png"))); // NOI18N
         buttonAdicionarEspecialidade.setToolTipText("Editar nova Especialidade");
+        buttonAdicionarEspecialidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAdicionarEspecialidadeActionPerformed(evt);
+            }
+        });
         add(buttonAdicionarEspecialidade);
         buttonAdicionarEspecialidade.setBounds(700, 260, 40, 30);
     }// </editor-fold>//GEN-END:initComponents
@@ -85,6 +90,10 @@ public class PacientesPanel extends javax.swing.JPanel {
     private void buttobEditarEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttobEditarEspecialidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttobEditarEspecialidadeActionPerformed
+
+    private void buttonAdicionarEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdicionarEspecialidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonAdicionarEspecialidadeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

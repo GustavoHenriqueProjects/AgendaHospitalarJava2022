@@ -8,6 +8,9 @@ import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.model.Especialidade;
 import java.awt.TrayIcon;
 import javax.swing.JOptionPane;
+import br.senai.sp.jandira.model.OperacaoEnum;
+import java.awt.TextField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -15,36 +18,45 @@ import javax.swing.JOptionPane;
  */
 public class EspecialidadeDialog extends javax.swing.JDialog {
 
-   
-    Especialidade especialidade;
-    
+    private Especialidade especialidade;
+    private OperacaoEnum operacao;
+
     public EspecialidadeDialog(
             java.awt.Frame parent,
-            boolean modal,Especialidade e) {
-        
+            boolean modal, Especialidade e, OperacaoEnum operacao) {
+
         super(parent, modal);
         initComponents();
-        
-        especialidade = e ;
-        
+
+        especialidade = e;
+
         prencherFormulario();
+        this.operacao = operacao;
+        preencherTitulo();
     }
-    
-    private void prencherFormulario(){
-        
-        jLabelTitulo.setText("Especialidades-Editar");
-        jLabelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/editar.png"))); 
-        TextFieldCodigoDaEspecialidade.setText(especialidade.getCodigo().toString());
-        TextFieldNomeEspecialidade.setText(especialidade.getNome());
-        TextFieldDescriçãoDaEspecialidade.setText(especialidade.getDescricao());
-    }
-    
-    public EspecialidadeDialog(
-            java.awt.Frame parent,
-            boolean modal) {
-        
+
+    public EspecialidadeDialog(java.awt.Frame parent, boolean modal, OperacaoEnum operacao) {
         super(parent, modal);
         initComponents();
+        this.operacao = operacao;
+        preencherTitulo();
+    }
+
+    private void prencherFormulario() {
+
+        TextFieldCodigoDaEspecialidade.setText(especialidade.getCodigo().toString());
+        jTextFieldDescriçãoDaEspecialidade.setText(especialidade.getDescricao());
+        jTextFieldNomeEspecialidade.setText(especialidade.getNome());
+
+    }
+
+    private void preencherTitulo() {
+        jLabelTitulo.setText("ESPECIALIDADE - " + operacao);
+        if (operacao == OperacaoEnum.EDITAR) {
+            IconeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/edit32.png")));
+        } else {
+            IconeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/plano-de-saude.png")));
+        }
     }
 
     /**
@@ -60,14 +72,15 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
         jPanelContent = new javax.swing.JPanel();
         jButtonCancelar = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
-        TextFieldDescriçãoDaEspecialidade = new javax.swing.JTextField();
+        jTextFieldDescriçãoDaEspecialidade = new javax.swing.JTextField();
         jLabelDescricao = new javax.swing.JLabel();
-        TextFieldNomeEspecialidade = new javax.swing.JTextField();
+        jTextFieldNomeEspecialidade = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         TextFieldCodigoDaEspecialidade = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
+        IconeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -106,26 +119,26 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
         jPanelContent.add(jButtonSalvar);
         jButtonSalvar.setBounds(610, 290, 70, 40);
 
-        TextFieldDescriçãoDaEspecialidade.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDescriçãoDaEspecialidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldDescriçãoDaEspecialidadeActionPerformed(evt);
+                jTextFieldDescriçãoDaEspecialidadeActionPerformed(evt);
             }
         });
-        jPanelContent.add(TextFieldDescriçãoDaEspecialidade);
-        TextFieldDescriçãoDaEspecialidade.setBounds(30, 230, 420, 30);
+        jPanelContent.add(jTextFieldDescriçãoDaEspecialidade);
+        jTextFieldDescriçãoDaEspecialidade.setBounds(30, 230, 420, 30);
 
         jLabelDescricao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelDescricao.setText("Descrição da especialidade:");
         jPanelContent.add(jLabelDescricao);
         jLabelDescricao.setBounds(30, 200, 180, 20);
 
-        TextFieldNomeEspecialidade.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNomeEspecialidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextFieldNomeEspecialidadeActionPerformed(evt);
+                jTextFieldNomeEspecialidadeActionPerformed(evt);
             }
         });
-        jPanelContent.add(TextFieldNomeEspecialidade);
-        TextFieldNomeEspecialidade.setBounds(30, 150, 420, 30);
+        jPanelContent.add(jTextFieldNomeEspecialidade);
+        jTextFieldNomeEspecialidade.setBounds(30, 150, 420, 30);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Nome da Especialidade:");
@@ -158,10 +171,14 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
         jPanel1.setLayout(null);
 
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/Button-Adicionar.png"))); // NOI18N
         jLabelTitulo.setText("   Especialidades-ADICIONAR");
         jPanel1.add(jLabelTitulo);
-        jLabelTitulo.setBounds(30, 20, 370, 32);
+        jLabelTitulo.setBounds(70, 20, 360, 32);
+
+        IconeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/Button-Adicionar.png"))); // NOI18N
+        IconeLabel.setToolTipText("");
+        jPanel1.add(IconeLabel);
+        IconeLabel.setBounds(40, 20, 40, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 790, 70);
@@ -171,85 +188,64 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
+        dispose();
+
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-            
-// Criar um objeto especialidade
-               Especialidade novaEspecialidade = new Especialidade();
-               novaEspecialidade.setNome(TextFieldNomeEspecialidade.getText());
-               novaEspecialidade.setDescricao(TextFieldDescriçãoDaEspecialidade.getText());
-        // Gravar o objeto através do DAO
-        EspecialidadeDAO.gravar(novaEspecialidade);
-        
-        JOptionPane.showMessageDialog(
-                this, 
-                "Especialidade gravada com sucesso!", 
-                "Especialiades",
-                JOptionPane.INFORMATION_MESSAGE);
-        
-        dispose();
+        if (operacao == OperacaoEnum.ADICIONAR) {
+            adicionar();
+        } else {
+            editar();
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
-    private void TextFieldDescriçãoDaEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldDescriçãoDaEspecialidadeActionPerformed
+    private void adicionar() {
+        Especialidade novaEspecialidade = new Especialidade();
+        novaEspecialidade.setNome(jTextFieldNomeEspecialidade.getText());
+        novaEspecialidade.setDescricao(jTextFieldDescriçãoDaEspecialidade.getText());
 
-    }//GEN-LAST:event_TextFieldDescriçãoDaEspecialidadeActionPerformed
+        EspecialidadeDAO.gravar(novaEspecialidade);
 
-    private void TextFieldNomeEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNomeEspecialidadeActionPerformed
+        JOptionPane.showMessageDialog(
+                this,
+                "Especialidade gravada com sucesso!",
+                "Especialiades",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        dispose();
+
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+    private void editar() {
+        especialidade.setNome(jTextFieldNomeEspecialidade.getText());
+        especialidade.setDescricao(jTextFieldDescriçãoDaEspecialidade.getText());
+
+        EspecialidadeDAO.atualizar(especialidade);
+        JOptionPane.showMessageDialog(
+                this,
+                "Especialidade editada com sucesso!",
+                "Especialiades",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        dispose();
+    }
+
+    private void jTextFieldDescriçãoDaEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescriçãoDaEspecialidadeActionPerformed
+
+    }//GEN-LAST:event_jTextFieldDescriçãoDaEspecialidadeActionPerformed
+
+    private void jTextFieldNomeEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeEspecialidadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextFieldNomeEspecialidadeActionPerformed
+    }//GEN-LAST:event_jTextFieldNomeEspecialidadeActionPerformed
 
     private void TextFieldCodigoDaEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldCodigoDaEspecialidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextFieldCodigoDaEspecialidadeActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EspecialidadeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EspecialidadeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EspecialidadeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EspecialidadeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                EspecialidadeDialog dialog = new EspecialidadeDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel IconeLabel;
     private javax.swing.JTextField TextFieldCodigoDaEspecialidade;
-    private javax.swing.JTextField TextFieldDescriçãoDaEspecialidade;
-    private javax.swing.JTextField TextFieldNomeEspecialidade;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel2;
@@ -258,6 +254,8 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelContent;
+    private javax.swing.JTextField jTextFieldDescriçãoDaEspecialidade;
+    private javax.swing.JTextField jTextFieldNomeEspecialidade;
     private java.awt.Panel panelBaixo;
     // End of variables declaration//GEN-END:variables
 }
