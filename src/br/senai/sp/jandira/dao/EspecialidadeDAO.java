@@ -50,7 +50,7 @@ public class EspecialidadeDAO {
         Especialidade e1 = new Especialidade("Cardiologia", "Parte da medicina que cuida do coração");
         Especialidade e2 = new Especialidade("Nefrologia", "Cuida das doençãs relacionadas ao Rins");
         Especialidade e3 = new Especialidade("Otorringolaringologia", "Estuda as doenças do ouvido");
-        Especialidade e4 = new Especialidade("Pediatria", "Parte da medicina que cuida das crinças");
+        Especialidade e4 = new Especialidade("Pediatria", "Parte da medicina que cuida das crianças");
 
         especialidades.add(e1);
         especialidades.add(e2);
