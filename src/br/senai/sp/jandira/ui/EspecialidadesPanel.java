@@ -8,7 +8,6 @@ import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.model.Especialidade;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import br.senai.sp.jandira.model.OperacaoEnum;
 
 /**
@@ -120,7 +119,7 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
 
         int resposta = JOptionPane.showConfirmDialog(this,
                 "Você confirma a exclusão?",
-                "Muita atenção!",
+                "Muita Atenção!!!",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.YES_NO_OPTION);
 
@@ -155,7 +154,8 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
                 = new EspecialidadeDialog(
                         null,
                         true,
-                        especialidade, OperacaoEnum.EDITAR);
+                        especialidade,
+                        OperacaoEnum.EDITAR);
 
         especialidadeDialog.setVisible(true);
         preencherTabela();
@@ -163,13 +163,14 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
     }
 
     private void buttonNovaEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovaEspecialidadeActionPerformed
+        
+        
         EspecialidadeDialog especialidadeDialog = new EspecialidadeDialog(null,
                 true,
                 OperacaoEnum.ADICIONAR);
         especialidadeDialog.setVisible(true);
         preencherTabela();
 
-        // TODO add your handling code here:
     }//GEN-LAST:event_buttonNovaEspecialidadeActionPerformed
 
 
@@ -186,21 +187,21 @@ public class EspecialidadesPanel extends javax.swing.JPanel {
 
         tableEspecialidades.setModel(EspecialidadeDAO.getEspecialidadesModel());
         ajustarTabela();
-
         tableEspecialidades.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
 
     private void ajustarTabela() {
         // Impedir que o usuário ajuste as colunas
         tableEspecialidades.getTableHeader().setReorderingAllowed(false);
+        
         // Bloquear a edição das celulas da tabela
-
         tableEspecialidades.setDefaultEditor(Object.class, null);
+        
         // Definir largura coluna
         tableEspecialidades.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tableEspecialidades.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tableEspecialidades.getColumnModel().getColumn(0).setPreferredWidth(60);
         tableEspecialidades.getColumnModel().getColumn(1).setPreferredWidth(230);
-        tableEspecialidades.getColumnModel().getColumn(2).setPreferredWidth(397);
+        tableEspecialidades.getColumnModel().getColumn(2).setPreferredWidth(386);
 
     }
 

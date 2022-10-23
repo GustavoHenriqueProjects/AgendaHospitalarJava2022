@@ -1,16 +1,10 @@
 package br.senai.sp.jandira.dao;
 import br.senai.sp.jandira.model.Especialidade;
-import br.senai.sp.jandira.ui.EspecialidadesPanel;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class EspecialidadeDAO {
 
-    /*
-    Essa classe será responsável pela persistência de dados 
-    das especialidades, por exemplo, adicionar uma nova especialidade,
-    excluir uma especialidade, etc.
-     */
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
 
     public static void gravar(Especialidade e) { //CREATE
@@ -23,7 +17,7 @@ public class EspecialidadeDAO {
 
     public static Especialidade getEspecialidade(Integer codigo) { //READ
         for (Especialidade e : especialidades) {
-            if (e.getCodigo() == codigo) {
+            if (e.getCodigo()== codigo) {
                 return e;
             }
         }
@@ -33,10 +27,7 @@ public class EspecialidadeDAO {
 
     public static void atualizar(Especialidade especialidadeAtualizada) { //UPDATE
         for (Especialidade e : especialidades) {
-            if (e.getCodigo() == especialidadeAtualizada.getCodigo()) {
-//               e = especialidadeAtualizada;
-                //especialidades.remove(e);
-                //especialidades.add(especialidadeAtualizada);
+            if (e.getCodigo()== especialidadeAtualizada.getCodigo()) {
                 especialidades.set(especialidades.indexOf(e), especialidadeAtualizada);
                 break;
             }
