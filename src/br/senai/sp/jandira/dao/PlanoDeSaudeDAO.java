@@ -64,7 +64,7 @@ public class PlanoDeSaudeDAO {
     }
     
     public static DefaultTableModel getPlanosModel(){
-        String[] titulos = {"CÓDIGO","OPERADORA","NUMERO","CATEGORIA","VALIDADE"};
+        String[] titulos = {"CÓDIGO","OPERADORA","NUMERO DO CARTÃO","CATEGORIA","VALIDADE"};
         String[][] dados = new String[planos.size()][5];
         
         int i = 0;
@@ -75,7 +75,7 @@ public class PlanoDeSaudeDAO {
             dados[i][1] = p.getOperadora();
             dados[i][2] = p.getNumero().toString();
             dados[i][3] = p.getCategoria();
-            DateTimeFormatter barra = DateTimeFormatter.ofPattern("dd//MM//yy");
+            DateTimeFormatter barra = DateTimeFormatter.ofPattern("dd//MM/yy");
             dados[i][4] = p.getValidade().toString();
             
            i++; 

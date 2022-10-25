@@ -248,6 +248,11 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         }else if (jTextFieldDescriçãoDaCategoria.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite a descrição da Categoria ");
             jTextFieldNomeDaOperadora.requestFocus();
+        }else if(jTextFieldNumeroCartao.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite o número do Cartão");
+            jTextFieldNumeroCartao.requestFocus();
+        }else if(jTextFieldValidadeCartao.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Por favor !!! Digite a válidade do Cartão");
         }else {
            
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
