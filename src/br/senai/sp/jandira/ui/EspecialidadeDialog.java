@@ -114,7 +114,7 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
             }
         });
         jPanelContent.add(jTextFieldDescriçãoDaEspecialidade);
-        jTextFieldDescriçãoDaEspecialidade.setBounds(30, 230, 420, 30);
+        jTextFieldDescriçãoDaEspecialidade.setBounds(30, 230, 370, 30);
 
         jLabelDescricao.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelDescricao.setText("Descrição da especialidade:");
@@ -127,7 +127,7 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
             }
         });
         jPanelContent.add(jTextFieldNomeEspecialidade);
-        jTextFieldNomeEspecialidade.setBounds(30, 150, 420, 30);
+        jTextFieldNomeEspecialidade.setBounds(30, 150, 370, 30);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Nome da Especialidade:");

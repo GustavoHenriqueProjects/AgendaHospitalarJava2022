@@ -2,7 +2,6 @@ package br.senai.sp.jandira.model;
 
 import java.io.Closeable;
 import java.time.LocalDate;
-import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 public class PlanoDeSaude {
