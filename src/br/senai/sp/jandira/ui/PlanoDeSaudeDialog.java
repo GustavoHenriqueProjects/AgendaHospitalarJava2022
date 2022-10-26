@@ -5,7 +5,9 @@ import br.senai.sp.jandira.model.OperacaoEnum;
 import br.senai.sp.jandira.model.PlanoDeSaude;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class PlanoDeSaudeDialog extends javax.swing.JDialog {
 
@@ -43,7 +45,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         jTextFieldDescriçãoDaCategoria.setText(planoDeSaude.getCategoria());
         jTextFieldNomeDaOperadora.setText(planoDeSaude.getOperadora());
         jTextFieldNumeroCartao.setText(planoDeSaude.getNumero());
-        jTextFieldValidadeCartao.setText(planoDeSaude.getValidade().toString());
+        textFieldValidade.setText(planoDeSaude.getValidade().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
     }
 
@@ -71,9 +73,9 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         TextFieldCodigoDoPlano = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldValidadeCartao = new javax.swing.JTextField();
         jLabelDescricao1 = new javax.swing.JLabel();
         jTextFieldNumeroCartao = new javax.swing.JTextField();
+        textFieldValidade = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
         IconeLabel = new javax.swing.JLabel();
@@ -162,14 +164,6 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         jPanelContent.add(jLabel1);
         jLabel1.setBounds(430, 120, 150, 20);
 
-        jTextFieldValidadeCartao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldValidadeCartaoActionPerformed(evt);
-            }
-        });
-        jPanelContent.add(jTextFieldValidadeCartao);
-        jTextFieldValidadeCartao.setBounds(430, 150, 140, 30);
-
         jLabelDescricao1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelDescricao1.setText("Número do seu cartão:");
         jPanelContent.add(jLabelDescricao1);
@@ -182,6 +176,8 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         });
         jPanelContent.add(jTextFieldNumeroCartao);
         jTextFieldNumeroCartao.setBounds(30, 300, 260, 30);
+        jPanelContent.add(textFieldValidade);
+        textFieldValidade.setBounds(430, 150, 140, 30);
 
         panelBaixo.add(jPanelContent);
         jPanelContent.setBounds(30, 20, 710, 350);
@@ -222,11 +218,27 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldDescriçãoDaCategoriaActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-
-        if (operacao == OperacaoEnum.ADICIONAR) {
-            adicionar();
+        if (jTextFieldNomeDaOperadora.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite o nome da Operadora ");
+            jTextFieldNomeDaOperadora.requestFocus();
+        } else if (jTextFieldDescriçãoDaCategoria.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite a descrição da Categoria ");
+            jTextFieldNomeDaOperadora.requestFocus();
+        } else if (jTextFieldNumeroCartao.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite o número do Cartão");
+            jTextFieldNumeroCartao.requestFocus();
+        } else if (jTextFieldNumeroCartao.getText().matches("[A-Za-z-]+")) {
+            JOptionPane.showMessageDialog(this, "Por favor, dígite o número do cartão");
+        } else if (textFieldValidade.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor !!! Digite a válidade do Cartão");
+        } else if (textFieldValidade.getText().matches("[A-Za-z-]+")) {
+            JOptionPane.showMessageDialog(this, "Por favor !!! Digite a data de válidade do Cartão neste formato 00/00/0000");
         } else {
-            editar();
+            if (operacao == OperacaoEnum.ADICIONAR) {
+                adicionar();
+            } else {
+                editar();
+            }
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -234,57 +246,43 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void jTextFieldValidadeCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldValidadeCartaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldValidadeCartaoActionPerformed
-
     private void jTextFieldNumeroCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroCartaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNumeroCartaoActionPerformed
     private void adicionar() {
-        if (jTextFieldNomeDaOperadora.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite o nome da Operadora ");
-            jTextFieldNomeDaOperadora.requestFocus();
-        }else if (jTextFieldDescriçãoDaCategoria.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite a descrição da Categoria ");
-            jTextFieldNomeDaOperadora.requestFocus();
-        }else if(jTextFieldNumeroCartao.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite o número do Cartão");
-            jTextFieldNumeroCartao.requestFocus();
-        }else if(jTextFieldValidadeCartao.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Por favor !!! Digite a válidade do Cartão");
-        }else {
-           
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            PlanoDeSaude novoPlanoSaude = new PlanoDeSaude();
-            novoPlanoSaude.setOperadora(jTextFieldNomeDaOperadora.getText());
-            novoPlanoSaude.setCategoria(jTextFieldDescriçãoDaCategoria.getText());
-            novoPlanoSaude.setNumero(jTextFieldNumeroCartao.getText().toString());
-            novoPlanoSaude.setValidade(LocalDate.parse(jTextFieldValidadeCartao.getText(),formato));
-            PlanoDeSaudeDAO.gravar(novoPlanoSaude);
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Especialidade gravada com sucesso!",
-                    "Especialiades",
-                    JOptionPane.INFORMATION_MESSAGE);
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        PlanoDeSaude novoPlanoSaude = new PlanoDeSaude();
+        novoPlanoSaude.setOperadora(jTextFieldNomeDaOperadora.getText());
+        novoPlanoSaude.setCategoria(jTextFieldDescriçãoDaCategoria.getText());
+        novoPlanoSaude.setNumero(jTextFieldNumeroCartao.getText().toString());
+        novoPlanoSaude.setValidade(LocalDate.parse(textFieldValidade.getText(),
+                DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        PlanoDeSaudeDAO.gravar(novoPlanoSaude);
 
-            dispose();
-        }
+        JOptionPane.showMessageDialog(
+                this,
+                "Especialidade gravada com sucesso!",
+                "Especialiades",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        dispose();
+
     }
 
     private void editar() {
         planoDeSaude.setOperadora(jTextFieldNomeDaOperadora.getText());
         planoDeSaude.setCategoria(jTextFieldDescriçãoDaCategoria.getText());
         planoDeSaude.setNumero(jTextFieldNumeroCartao.getText());
-        planoDeSaude.setValidade(LocalDate.parse(jTextFieldValidadeCartao.getText(),DateTimeFormatter.ISO_DATE));
+        planoDeSaude.setValidade(LocalDate.parse(textFieldValidade.getText(),  
+                DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
         PlanoDeSaudeDAO.atualizar(planoDeSaude);
         JOptionPane.showMessageDialog(
                 this,
                 "Plano de saúde editado com sucesso!",
                 "Plano saúde",
-                JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.WARNING_MESSAGE);
 
         dispose();
     }
@@ -305,7 +303,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldDescriçãoDaCategoria;
     private javax.swing.JTextField jTextFieldNomeDaOperadora;
     private javax.swing.JTextField jTextFieldNumeroCartao;
-    private javax.swing.JTextField jTextFieldValidadeCartao;
     private java.awt.Panel panelBaixo;
+    private javax.swing.JTextField textFieldValidade;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,8 +7,10 @@ package br.senai.sp.jandira.ui;
 import br.senai.sp.jandira.dao.PlanoDeSaudeDAO;
 import br.senai.sp.jandira.model.OperacaoEnum;
 import br.senai.sp.jandira.model.PlanoDeSaude;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 public class PlanoDeSaudePanel extends javax.swing.JPanel {
 
@@ -124,10 +126,11 @@ public class PlanoDeSaudePanel extends javax.swing.JPanel {
         }
     }
     private void buttobEditarPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttobEditarPlanoDeSaudeActionPerformed
+        
         if (getLinha() != -1) {
             editarPlanoSaude();
         } else {
-            JOptionPane.showConfirmDialog(
+            JOptionPane.showMessageDialog(
                     this,
                     "Por favor, selecione a especialidade que você deseja editar",
                     "Atenção",
@@ -136,8 +139,10 @@ public class PlanoDeSaudePanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_buttobEditarPlanoDeSaudeActionPerformed
     private void editarPlanoSaude() {
-
-     PlanoDeSaude planoDeSaude = PlanoDeSaudeDAO.getPlanoDeSaudes(getCodigo());
+        
+        
+        
+        PlanoDeSaude planoDeSaude = PlanoDeSaudeDAO.getPlanoDeSaudes(getCodigo());
 
         PlanoDeSaudeDialog planoDeSaudeDialog
                 = new PlanoDeSaudeDialog(
@@ -147,12 +152,12 @@ public class PlanoDeSaudePanel extends javax.swing.JPanel {
                         OperacaoEnum.EDITAR);
 
         planoDeSaudeDialog.setVisible(true);
- 
+
         preencherTabelaPlanosDeSaude();
-        
+
     }
     private void buttonNovoPlanoDeSaúdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovoPlanoDeSaúdeActionPerformed
-    
+
         PlanoDeSaudeDialog planoDeSaudeDialog = new PlanoDeSaudeDialog(null,
                 true,
                 OperacaoEnum.ADICIONAR);
@@ -169,7 +174,7 @@ public class PlanoDeSaudePanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane scroolEspecialidades;
     private javax.swing.JTable tablePlanosDeSaude;
     // End of variables declaration//GEN-END:variables
-    
+
     private void preencherTabelaPlanosDeSaude() {
         tablePlanosDeSaude.setModel(PlanoDeSaudeDAO.getPlanosModel());
         ajustarTabelaPlanosDeSaude();

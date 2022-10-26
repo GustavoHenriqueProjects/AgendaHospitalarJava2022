@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class PlanoDeSaudeDAO {
-        
+
+    LocalDate localDate = LocalDate.now();
+
     private static ArrayList<PlanoDeSaude> planos = new ArrayList<>();
 
     public static void gravar(PlanoDeSaude p) {
@@ -38,7 +40,7 @@ public class PlanoDeSaudeDAO {
         }
 
     }
-    
+
     //instancia de um objeto
     public static void excluir(Integer codigo) { //DELETE
         for (PlanoDeSaude p : planos) {
@@ -48,42 +50,42 @@ public class PlanoDeSaudeDAO {
             }
         }
     }
-    
+
     //Criar a lista de planos
-    public static  void criarListaDePlano(){
-    PlanoDeSaude p1 = new PlanoDeSaude("Amil", "Diamante","200",LocalDate.of(2002, Month.MARCH, 12));
-    PlanoDeSaude p2 = new PlanoDeSaude("Bradesco Saúde", "Ouro","201",LocalDate.of(2002, Month.MARCH, 12) );
-    PlanoDeSaude p3 = new PlanoDeSaude("Notredame", "Prata","202",LocalDate.of(2002, Month.MARCH, 12) );
-    PlanoDeSaude p4 = new PlanoDeSaude("SulAmérica", "Bronze","203",LocalDate.of(2002, Month.MARCH, 12) );
-    
-    planos.add(p1);
-    planos.add(p2);
-    planos.add(p3);
-    planos.add(p4);
+    public static void criarListaDePlano() {
+        PlanoDeSaude p1 = new PlanoDeSaude("Amil", "Diamante", "200", LocalDate.of(2002, Month.MARCH, 12));
+        PlanoDeSaude p2 = new PlanoDeSaude("Bradesco Saúde", "Ouro", "201", LocalDate.of(2002, Month.MARCH, 12));
+        PlanoDeSaude p3 = new PlanoDeSaude("Notredame", "Prata", "202", LocalDate.of(2002, Month.MARCH, 12));
+        PlanoDeSaude p4 = new PlanoDeSaude("SulAmérica", "Bronze", "203", LocalDate.of(2002, Month.MARCH, 12));
+
+        planos.add(p1);
+        planos.add(p2);
+        planos.add(p3);
+        planos.add(p4);
 
     }
-    
-    public static DefaultTableModel getPlanosModel(){
-        String[] titulos = {"CÓDIGO","OPERADORA","NUMERO DO CARTÃO","CATEGORIA","VALIDADE"};
+
+    public static DefaultTableModel getPlanosModel() {
+        String[] titulos = {"CÓDIGO", "OPERADORA", "NUMERO DO CARTÃO", "CATEGORIA", "VALIDADE"};
         String[][] dados = new String[planos.size()][5];
-        
+
         int i = 0;
-        
-        for(PlanoDeSaude p : planos){
-           
+
+        for (PlanoDeSaude p : planos) {
+
             dados[i][0] = p.getCodigo().toString();
             dados[i][1] = p.getOperadora();
             dados[i][2] = p.getNumero().toString();
             dados[i][3] = p.getCategoria();
-            DateTimeFormatter barra = DateTimeFormatter.ofPattern("dd//MM/yy");
-            dados[i][4] = p.getValidade().toString();
-            
-           i++; 
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            dados[i][4] = p.getValidade().format(formato);
+
+            i++;
         }
-        
+
         DefaultTableModel model = new DefaultTableModel(dados, titulos);
         return model;
-    
+
     }
 
 }

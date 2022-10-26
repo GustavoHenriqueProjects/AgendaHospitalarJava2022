@@ -2,6 +2,8 @@ package br.senai.sp.jandira.model;
 
 import java.io.Closeable;
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 public class PlanoDeSaude {
@@ -39,8 +41,8 @@ public class PlanoDeSaude {
 
     //metodos
     public void setOperadora(String operadora) {
-            this.operadora = operadora;
-        
+        this.operadora = operadora;
+
     }
 
     public String getOperadora() {
@@ -89,8 +91,8 @@ public class PlanoDeSaude {
     public int getContador() {
         return contador;
     }
-    
-    public LocalDate getValidade(){
+
+    public LocalDate getValidade() {
         return validade;
     }
 
