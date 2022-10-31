@@ -1,19 +1,16 @@
 package br.senai.sp.jandira.ui;
 
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author 22282227
- */
 public class HomeFrame extends javax.swing.JFrame {
 
     private int fecha;
     private EspecialidadesPanel especialidadesPanel;
     private PlanoDeSaudePanel planoDeSaudePanel;
+    private PacientesPanel pacientesPanel;
+    private AgendaPanel agendaPanel;
+    private MedicosPanel medicosPanel;
     private final int POS_X = 30;
     private final int POS_Y = 180;
     private final int POS_W = 750;
@@ -225,9 +222,11 @@ public class HomeFrame extends javax.swing.JFrame {
         }
     }
     private void buttonAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgendaActionPerformed
+        agendaPanel.setVisible(true);
         panelHome.setVisible(false);
         especialidadesPanel.setVisible(false);
         planoDeSaudePanel.setVisible(false);
+        pacientesPanel.setVisible(false);
         buttonEspecialidades.setBackground(new java.awt.Color(242, 242, 242));
         buttonHome.setBackground(new java.awt.Color(242, 242, 242));
         buttonMedicos.setBackground(new java.awt.Color(242, 242, 242));
@@ -237,6 +236,9 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAgendaActionPerformed
 
     private void buttonPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPacientesActionPerformed
+        pacientesPanel.setVisible(true);
+        agendaPanel.setVisible(false);
+        medicosPanel.setVisible(false);
         panelHome.setVisible(false);
         especialidadesPanel.setVisible(false);
         planoDeSaudePanel.setVisible(false);
@@ -264,6 +266,8 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonEspecialidadesActionPerformed
 
     private void buttonMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMedicosActionPerformed
+        medicosPanel.setVisible(true);
+        agendaPanel.setVisible(false);
         panelHome.setVisible(false);
         especialidadesPanel.setVisible(false);
         planoDeSaudePanel.setVisible(false);
@@ -277,9 +281,9 @@ public class HomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonMedicosActionPerformed
 
     private void buttonPlanoDeSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlanoDeSaudeActionPerformed
+        planoDeSaudePanel.setVisible(true);
         panelHome.setVisible(false);
         especialidadesPanel.setVisible(false);
-        planoDeSaudePanel.setVisible(true);
         buttonEspecialidades.setBackground(new java.awt.Color(242, 242, 242));
         buttonHome.setBackground(new java.awt.Color(242, 242, 242));
         buttonMedicos.setBackground(new java.awt.Color(242, 242, 242));
@@ -336,6 +340,22 @@ public class HomeFrame extends javax.swing.JFrame {
         planoDeSaudePanel.setBounds(POS_X, POS_Y, POS_W, POS_H);
         getContentPane().add(planoDeSaudePanel);
         planoDeSaudePanel.setVisible(false);
+        
+        agendaPanel = new AgendaPanel();
+        agendaPanel.setBounds(POS_X,POS_Y,POS_W,POS_H);
+        getContentPane().add(agendaPanel);
+        agendaPanel.setVisible(false);
+        
+        medicosPanel = new MedicosPanel();
+        medicosPanel.setBounds(POS_X,POS_Y,POS_W,POS_H);
+        getContentPane().add(medicosPanel);
+        medicosPanel.setVisible(false);
+        
+        pacientesPanel = new PacientesPanel();
+        pacientesPanel.setBounds(POS_X, POS_Y,POS_W,POS_H);
+        getContentPane().add(pacientesPanel);//Pega o Painel da lista e joga na tela;
+        pacientesPanel.setVisible(false);
+        
 
     }
 

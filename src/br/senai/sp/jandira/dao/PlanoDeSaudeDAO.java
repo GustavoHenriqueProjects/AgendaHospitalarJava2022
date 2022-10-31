@@ -53,10 +53,10 @@ public class PlanoDeSaudeDAO {
 
     //Criar a lista de planos
     public static void criarListaDePlano() {
-        PlanoDeSaude p1 = new PlanoDeSaude("Amil", "Diamante", "200", LocalDate.of(2002, Month.MARCH, 12));
-        PlanoDeSaude p2 = new PlanoDeSaude("Bradesco Saúde", "Ouro", "201", LocalDate.of(2002, Month.MARCH, 12));
-        PlanoDeSaude p3 = new PlanoDeSaude("Notredame", "Prata", "202", LocalDate.of(2002, Month.MARCH, 12));
-        PlanoDeSaude p4 = new PlanoDeSaude("SulAmérica", "Bronze", "203", LocalDate.of(2002, Month.MARCH, 12));
+        PlanoDeSaude p1 = new PlanoDeSaude("Amil", "Diamante", "200", LocalDate.of(2023, Month.MARCH, 12));
+        PlanoDeSaude p2 = new PlanoDeSaude("Bradesco Saúde", "Ouro", "201", LocalDate.of(2023, Month.MARCH, 12));
+        PlanoDeSaude p3 = new PlanoDeSaude("Notredame", "Prata", "202", LocalDate.of(2023, Month.MARCH, 12));
+        PlanoDeSaude p4 = new PlanoDeSaude("SulAmérica", "Bronze", "203", LocalDate.of(2023, Month.MARCH, 12));
 
         planos.add(p1);
         planos.add(p2);
