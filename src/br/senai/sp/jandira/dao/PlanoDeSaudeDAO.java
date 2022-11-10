@@ -82,17 +82,51 @@ public static ArrayList<PlanoDeSaude> getPlanoDeSaudes() { //READ
 
     //Criar a lista de planos
     public static void criarListaDePlano() {
-        
-        
-        PlanoDeSaude p1 = new PlanoDeSaude("Amil", "Diamante", "200", LocalDate.of(2023, Month.MARCH, 12));
-        PlanoDeSaude p2 = new PlanoDeSaude("Bradesco Saúde", "Ouro", "201", LocalDate.of(2023, Month.MARCH, 12));
-        PlanoDeSaude p3 = new PlanoDeSaude("Notredame", "Prata", "202", LocalDate.of(2023, Month.MARCH, 12));
-        PlanoDeSaude p4 = new PlanoDeSaude("SulAmérica", "Bronze", "203", LocalDate.of(2023, Month.MARCH, 12));
+        try {
+            //Tranformando linha em objeto
+            
+            BufferedReader leitor = Files.newBufferedReader(PATH);
+            
+            String linha = leitor.readLine();
+            
+            //While enquanto essa linha não for nula crio uma especialidade
+            while(linha != null){
+                
+                //Transformar os dados da linha em uma especialidade
+                String[] vetor = linha.split(";"); //split me devolve um vetor posição 0 1 2
+                String[] data = vetor[4].split("-");
+                 PlanoDeSaude p = new PlanoDeSaude(
+                        Integer.valueOf(vetor[0]), 
+                        vetor[1], 
+                        vetor[3], 
+                        vetor[2], 
+                        LocalDate.of(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])));
+                         // A cada volta eu crio uma especialidade
+                
+                //Guardar a especialidade na lista
+                planos.add(p);
+                
+                //Ler a proxima linha
+                linha = leitor.readLine();
+                
+            }
+            
+            //fechar o arquivo depois que sair do while
+            leitor.close();
+            
+        }catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ão ler o arquivo");
+        }
 
-        planos.add(p1);
-        planos.add(p2);
-        planos.add(p3);
-        planos.add(p4);
+//        PlanoDeSaude p1 = new PlanoDeSaude("Amil", "Diamante", "200", LocalDate.of(2023, Month.MARCH, 12));
+//        PlanoDeSaude p2 = new PlanoDeSaude("Bradesco Saúde", "Ouro", "201", LocalDate.of(2023, Month.MARCH, 12));
+//        PlanoDeSaude p3 = new PlanoDeSaude("Notredame", "Prata", "202", LocalDate.of(2023, Month.MARCH, 12));
+//        PlanoDeSaude p4 = new PlanoDeSaude("SulAmérica", "Bronze", "203", LocalDate.of(2023, Month.MARCH, 12));
+//
+//        planos.add(p1);
+//        planos.add(p2);
+//        planos.add(p3);
+//        planos.add(p4);
 
     }
 

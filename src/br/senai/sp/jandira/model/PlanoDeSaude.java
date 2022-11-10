@@ -30,6 +30,15 @@ public class PlanoDeSaude {
         gerarCodigo();
         
     }
+    
+     public PlanoDeSaude(Integer codigo, String operadora, String categoria, String numero, LocalDate validade) { //modificado
+        this.operadora = operadora;
+        this.categoria = categoria;
+        this.validade = validade;
+        this.numero = numero;
+        this.codigo = codigo;
+        
+    }
 
     public PlanoDeSaude() {
         this.quantidade++;
