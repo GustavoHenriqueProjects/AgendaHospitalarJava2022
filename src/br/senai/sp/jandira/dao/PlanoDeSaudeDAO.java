@@ -1,13 +1,25 @@
 package br.senai.sp.jandira.dao;
 
 import br.senai.sp.jandira.model.PlanoDeSaude;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class PlanoDeSaudeDAO {
+
+    //Final uma variavel nunca pode ser alterada
+    private final static String URL = "C:\\Users\\22282186\\JavaBanco\\PlanoDeSaude.txt";
+    private final static Path PATH = Paths.get(URL);
 
     LocalDate localDate = LocalDate.now();
 
@@ -15,9 +27,26 @@ public class PlanoDeSaudeDAO {
 
     public static void gravar(PlanoDeSaude p) {
         planos.add(p);
+
+        //Gravar em Arquivo ***
+        //SERIALIZAÇÃO pegar algo e colocar decompor em outra coisa
+        try {
+            BufferedWriter escritorSaude = Files.newBufferedWriter(
+                    PATH,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+
+            //escritor.write(e.getCodigo()+";"+e.getNome()+";"+e.getDescricao()); 
+            escritorSaude.write(p.getPlanoDeSaudeSeparadaPorPontoEVirgula());
+            escritorSaude.newLine();
+            escritorSaude.close();
+
+        } catch (IOException erro) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro.");
+        }
     }
 
-    public static ArrayList<PlanoDeSaude> getPlanoDeSaudes() { //READ
+public static ArrayList<PlanoDeSaude> getPlanoDeSaudes() { //READ
         return planos;
     }
 
@@ -53,6 +82,8 @@ public class PlanoDeSaudeDAO {
 
     //Criar a lista de planos
     public static void criarListaDePlano() {
+        
+        
         PlanoDeSaude p1 = new PlanoDeSaude("Amil", "Diamante", "200", LocalDate.of(2023, Month.MARCH, 12));
         PlanoDeSaude p2 = new PlanoDeSaude("Bradesco Saúde", "Ouro", "201", LocalDate.of(2023, Month.MARCH, 12));
         PlanoDeSaude p3 = new PlanoDeSaude("Notredame", "Prata", "202", LocalDate.of(2023, Month.MARCH, 12));

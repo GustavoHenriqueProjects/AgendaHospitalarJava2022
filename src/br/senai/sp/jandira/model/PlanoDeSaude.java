@@ -1,10 +1,6 @@
 package br.senai.sp.jandira.model;
 
-import java.io.Closeable;
 import java.time.LocalDate;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
 
 public class PlanoDeSaude {
 
@@ -25,13 +21,14 @@ public class PlanoDeSaude {
         gerarCodigo(); //Porque esse codigo é unico, um para cada operadora
     }
 
-    public PlanoDeSaude(String operadora, String categoria, String numero, LocalDate validade) {
+    public PlanoDeSaude(String operadora, String categoria, String numero, LocalDate validade) { //modificado
         this.operadora = operadora;
         this.categoria = categoria;
         this.validade = validade;
         this.numero = numero;
         this.quantidade++;//Para ir somando mais 1 toda vez que for utilizado
         gerarCodigo();
+        
     }
 
     public PlanoDeSaude() {
@@ -94,6 +91,10 @@ public class PlanoDeSaude {
 
     public LocalDate getValidade() {
         return validade;
+    }
+    
+     public String getPlanoDeSaudeSeparadaPorPontoEVirgula(){
+        return this.codigo + ";"+ this.operadora+";"+this.getNumero()+";"+this.getCategoria()+";"+this.getValidade();
     }
 
 }
