@@ -31,7 +31,7 @@ public class PlanoDeSaude {
         
     }
     
-     public PlanoDeSaude(Integer codigo, String operadora, String categoria, String numero, LocalDate validade) { //modificado
+     public PlanoDeSaude(Integer codigo, String operadora, String categoria, String numero, LocalDate validade) { //metodo Integer criado para validade
         this.operadora = operadora;
         this.categoria = categoria;
         this.validade = validade;

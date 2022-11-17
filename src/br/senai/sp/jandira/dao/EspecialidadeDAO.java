@@ -2,22 +2,25 @@ package br.senai.sp.jandira.dao;
 import br.senai.sp.jandira.model.Especialidade;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import javax.sound.midi.Patch;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class EspecialidadeDAO {
     //Final uma variavel nunca pode ser alterada
-    private final static String URL = "C:\\Users\\22282186\\JavaBanco\\Especialidade.txt";
+    private final static String URL = 
+            "C:\\Users\\22282186\\JavaBanco\\Especialidade.txt";
     private final static Path PATH = Paths.get(URL);
-
+    private final static String URL_TEMP = 
+            "C:\\Users\\22282186\\JavaBanco\\Especialidade-temp.txt";
+    private final static Path PATH_TEMP = Paths.get(URL_TEMP);
+    
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
 
     public static void gravar(Especialidade e) { //CREATE
@@ -61,17 +64,59 @@ public class EspecialidadeDAO {
                 break;
             }
         }
+        
+        atualizarArquivo();
 
+    }
+    
+    public static void atualizarArquivo(){
+        // Passo 1 - Criar uma representação dos arquivos que serão manipulados
+        //referencia para o objeto que está no local(caminho)
+        File arquivoAtual = new File(URL);
+
+        //representação do arquivo temporario
+        File arquivoTemp = new File(URL_TEMP);
+
+        try {
+            //criar o arquivo temporario
+            arquivoTemp.createNewFile();
+
+            //Abrir o arquivo temporario para a escrita
+            BufferedWriter bwTemp = Files.newBufferedWriter(
+                    PATH_TEMP,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+
+            //Iterar(fazer ou dizer novamente; repetir) na lista para 
+            //adicionar as especialidades no arquivo temporario, exceto o 
+            //registro que não queremos mais
+            for (Especialidade e : especialidades) {
+                bwTemp.write(e.getEspecialidadeSeparadaPorPontoEVirgula());
+                bwTemp.newLine();
+            }
+            bwTemp.close();
+            
+            //Excluir o arquivo atual
+            arquivoAtual.delete();
+            
+            //Renomear o arquivo
+            arquivoTemp.renameTo(arquivoAtual);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     //instancia de um objeto
     public static void excluir(Integer codigo) { //DELETE
         for (Especialidade e : especialidades) {
-            if (e.getCodigo() == codigo) {
+            if (e.getCodigo() .equals(codigo)) {
                 especialidades.remove(e);
                 break;
             }
         }
+        
+        atualizarArquivo();
     }
 
     //Criar uma lista de especialidades
