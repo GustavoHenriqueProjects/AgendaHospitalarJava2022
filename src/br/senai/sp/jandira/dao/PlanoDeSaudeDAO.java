@@ -3,6 +3,7 @@ package br.senai.sp.jandira.dao;
 import br.senai.sp.jandira.model.PlanoDeSaude;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,6 +21,10 @@ public class PlanoDeSaudeDAO {
     //Final uma variavel nunca pode ser alterada
     private final static String URL = "C:\\Users\\22282186\\JavaBanco\\PlanoDeSaude.txt";
     private final static Path PATH = Paths.get(URL);
+    
+    private final static String URL_TEMP = 
+            "C:\\Users\\22282186\\JavaBanco\\PlanoDeSaude-temp.txt";
+    private final static Path PATH_TEMP = Paths.get(URL_TEMP);
 
     LocalDate localDate = LocalDate.now();
 
@@ -67,7 +72,45 @@ public static ArrayList<PlanoDeSaude> getPlanoDeSaudes() { //READ
                 break;
             }
         }
+        atualizarArquivo();
+    }
+    
+    public static void atualizarArquivo(){
+        // Passo 1 - Criar uma representação dos arquivos que serão manipulados
+        //referencia para o objeto que está no local(caminho)
+        File arquivoAtual = new File(URL);
 
+        //representação do arquivo temporario
+        File arquivoTemp = new File(URL_TEMP);
+
+        try {
+            //criar o arquivo temporario
+            arquivoTemp.createNewFile();
+
+            //Abrir o arquivo temporario para a escrita
+            BufferedWriter bwTemp = Files.newBufferedWriter(
+                    PATH_TEMP,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+
+            //Iterar(fazer ou dizer novamente; repetir) na lista para 
+            //adicionar as especialidades no arquivo temporario, exceto o 
+            //registro que não queremos mais
+            for (PlanoDeSaude p : planos) {
+                bwTemp.write(p.getPlanoDeSaudeSeparadaPorPontoEVirgula());
+                bwTemp.newLine();
+            }
+            bwTemp.close();
+            
+            //Excluir o arquivo atual
+            arquivoAtual.delete();
+            
+            //Renomear o arquivo
+            arquivoTemp.renameTo(arquivoAtual);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     //instancia de um objeto
@@ -78,6 +121,8 @@ public static ArrayList<PlanoDeSaude> getPlanoDeSaudes() { //READ
                 break;
             }
         }
+        
+        atualizarArquivo();
     }
 
     //Criar a lista de planos

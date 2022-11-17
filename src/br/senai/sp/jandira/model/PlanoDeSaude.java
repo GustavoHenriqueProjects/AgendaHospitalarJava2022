@@ -105,5 +105,6 @@ public class PlanoDeSaude {
      public String getPlanoDeSaudeSeparadaPorPontoEVirgula(){
         return this.codigo + ";"+ this.operadora+";"+this.getNumero()+";"+this.getCategoria()+";"+this.getValidade();
     }
+     
 
 }
