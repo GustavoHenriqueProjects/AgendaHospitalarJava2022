@@ -15,10 +15,10 @@ import javax.swing.table.DefaultTableModel;
 public class EspecialidadeDAO {
     //Final uma variavel nunca pode ser alterada
     private final static String URL = 
-            "C:\\Users\\22282186\\JavaBanco\\Especialidade.txt";
+            "D:\\Eclipse.java\\Project-Java\\Especialidade.txt";
     private final static Path PATH = Paths.get(URL);
     private final static String URL_TEMP = 
-            "C:\\Users\\22282186\\JavaBanco\\Especialidade-temp.txt";
+            "D:\\Eclipse.java\\Project-Java\\Especialidade-temp.txt";
     private final static Path PATH_TEMP = Paths.get(URL_TEMP);
     
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
@@ -59,7 +59,7 @@ public class EspecialidadeDAO {
 
     public static void atualizar(Especialidade especialidadeAtualizada) { //UPDATE
         for (Especialidade e : especialidades) {
-            if (e.getCodigo()== especialidadeAtualizada.getCodigo()) {
+            if(e.getCodigo().equals(especialidadeAtualizada.getCodigo())) {
                 especialidades.set(especialidades.indexOf(e), especialidadeAtualizada);
                 break;
             }

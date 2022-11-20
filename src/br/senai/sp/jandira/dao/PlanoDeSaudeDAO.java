@@ -160,7 +160,7 @@ public static ArrayList<PlanoDeSaude> getPlanoDeSaudes() { //READ
             leitor.close();
             
         }catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro ão ler o arquivo");
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro ão ler o arquivo ");
         }
 
 //        PlanoDeSaude p1 = new PlanoDeSaude("Amil", "Diamante", "200", LocalDate.of(2023, Month.MARCH, 12));
