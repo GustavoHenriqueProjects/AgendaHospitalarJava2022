@@ -10,6 +10,14 @@ public class Medico {
     private String crm;
     private Integer codigo;
     private static int contador = 0;
+    
+    //Construtor
+    public Medico(String nome, String telefone, String crm){
+        this.nome = nome;
+        this.telefone = telefone;
+        this.crm = crm;
+        gerarCodigo();
+    }
 
     //metodos
     public void setNome(String nome) {

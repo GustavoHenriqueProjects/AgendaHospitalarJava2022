@@ -27,21 +27,252 @@ public class MedicosDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        jLabelTitulo = new javax.swing.JLabel();
+        IconeLabel = new javax.swing.JLabel();
+        jPanelContent = new javax.swing.JPanel();
+        jButtonCancelar = new javax.swing.JButton();
+        jButtonSalvar = new javax.swing.JButton();
+        jTextFieldCRM = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldCodigoMedico = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldTelefone = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldCodigoMedico1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldCodigoMedico2 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextFieldCodigoMedico3 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(158, 168, 250));
+        jPanel1.setLayout(null);
+
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabelTitulo.setText("MÉDICO - ADICIONAR");
+        jPanel1.add(jLabelTitulo);
+        jLabelTitulo.setBounds(70, 20, 270, 32);
+
+        IconeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/Button-Adicionar.png"))); // NOI18N
+        IconeLabel.setToolTipText("");
+        jPanel1.add(IconeLabel);
+        IconeLabel.setBounds(30, 20, 40, 30);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 780, 70);
+
+        jPanelContent.setBackground(new java.awt.Color(204, 204, 255));
+        jPanelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalhes do(a) médico(a):", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(153, 0, 153))); // NOI18N
+        jPanelContent.setForeground(new java.awt.Color(255, 255, 255));
+        jPanelContent.setLayout(null);
+
+        jButtonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/Cancelar.png"))); // NOI18N
+        jButtonCancelar.setToolTipText("Cancelar");
+        jButtonCancelar.setBorder(null);
+        jButtonCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
+        jPanelContent.add(jButtonCancelar);
+        jButtonCancelar.setBounds(570, 330, 70, 40);
+
+        jButtonSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/Salvar.png"))); // NOI18N
+        jButtonSalvar.setToolTipText("Salvar");
+        jButtonSalvar.setBorder(null);
+        jButtonSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
+        jPanelContent.add(jButtonSalvar);
+        jButtonSalvar.setBounds(660, 330, 70, 40);
+
+        jTextFieldCRM.setEditable(false);
+        jTextFieldCRM.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldCRM.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextFieldCRM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCRMActionPerformed(evt);
+            }
+        });
+        jPanelContent.add(jTextFieldCRM);
+        jTextFieldCRM.setBounds(210, 70, 140, 30);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("CRM:");
+        jPanelContent.add(jLabel2);
+        jLabel2.setBounds(210, 40, 50, 20);
+
+        jTextFieldCodigoMedico.setEditable(false);
+        jTextFieldCodigoMedico.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldCodigoMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextFieldCodigoMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCodigoMedicoActionPerformed(evt);
+            }
+        });
+        jPanelContent.add(jTextFieldCodigoMedico);
+        jTextFieldCodigoMedico.setBounds(30, 70, 120, 30);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Código");
+        jPanelContent.add(jLabel3);
+        jLabel3.setBounds(30, 40, 50, 20);
+
+        jTextFieldTelefone.setEditable(false);
+        jTextFieldTelefone.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldTelefone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextFieldTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTelefoneActionPerformed(evt);
+            }
+        });
+        jPanelContent.add(jTextFieldTelefone);
+        jTextFieldTelefone.setBounds(30, 150, 160, 30);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Telefone:");
+        jPanelContent.add(jLabel4);
+        jLabel4.setBounds(30, 120, 70, 20);
+
+        jTextFieldCodigoMedico1.setEditable(false);
+        jTextFieldCodigoMedico1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldCodigoMedico1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextFieldCodigoMedico1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCodigoMedico1ActionPerformed(evt);
+            }
+        });
+        jPanelContent.add(jTextFieldCodigoMedico1);
+        jTextFieldCodigoMedico1.setBounds(210, 150, 330, 30);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("E-mail:");
+        jPanelContent.add(jLabel5);
+        jLabel5.setBounds(210, 120, 50, 20);
+
+        jTextFieldCodigoMedico2.setEditable(false);
+        jTextFieldCodigoMedico2.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldCodigoMedico2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextFieldCodigoMedico2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCodigoMedico2ActionPerformed(evt);
+            }
+        });
+        jPanelContent.add(jTextFieldCodigoMedico2);
+        jTextFieldCodigoMedico2.setBounds(580, 150, 130, 30);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("Data de nascimento:");
+        jPanelContent.add(jLabel6);
+        jLabel6.setBounds(580, 120, 130, 20);
+
+        jTextFieldCodigoMedico3.setEditable(false);
+        jTextFieldCodigoMedico3.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldCodigoMedico3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextFieldCodigoMedico3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCodigoMedico3ActionPerformed(evt);
+            }
+        });
+        jPanelContent.add(jTextFieldCodigoMedico3);
+        jTextFieldCodigoMedico3.setBounds(390, 70, 320, 30);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Nome do(a) médico(a):");
+        jPanelContent.add(jLabel7);
+        jLabel7.setBounds(390, 40, 150, 20);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel1.setText("Especialidades do médico:");
+        jPanelContent.add(jLabel1);
+        jLabel1.setBounds(290, 200, 170, 20);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel8.setText("Lista de especialidades:");
+        jPanelContent.add(jLabel8);
+        jLabel8.setBounds(30, 200, 170, 20);
+
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList2);
+
+        jPanelContent.add(jScrollPane1);
+        jScrollPane1.setBounds(290, 230, 150, 140);
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jList1);
+
+        jPanelContent.add(jScrollPane2);
+        jScrollPane2.setBounds(30, 230, 150, 140);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/retorna.png"))); // NOI18N
+        jPanelContent.add(jButton1);
+        jButton1.setBounds(210, 290, 50, 31);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/seta-direita.png"))); // NOI18N
+        jPanelContent.add(jButton2);
+        jButton2.setBounds(210, 240, 50, 31);
+
+        getContentPane().add(jPanelContent);
+        jPanelContent.setBounds(20, 90, 740, 380);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+       
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jTextFieldCRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCRMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCRMActionPerformed
+
+    private void jTextFieldCodigoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoMedicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCodigoMedicoActionPerformed
+
+    private void jTextFieldTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTelefoneActionPerformed
+
+    private void jTextFieldCodigoMedico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoMedico1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCodigoMedico1ActionPerformed
+
+    private void jTextFieldCodigoMedico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoMedico2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCodigoMedico2ActionPerformed
+
+    private void jTextFieldCodigoMedico3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoMedico3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCodigoMedico3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +317,31 @@ public class MedicosDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel IconeLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelContent;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextFieldCRM;
+    private javax.swing.JTextField jTextFieldCodigoMedico;
+    private javax.swing.JTextField jTextFieldCodigoMedico1;
+    private javax.swing.JTextField jTextFieldCodigoMedico2;
+    private javax.swing.JTextField jTextFieldCodigoMedico3;
+    private javax.swing.JTextField jTextFieldTelefone;
     // End of variables declaration//GEN-END:variables
 }

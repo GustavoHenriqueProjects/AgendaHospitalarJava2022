@@ -212,7 +212,7 @@ public class HomeFrame extends javax.swing.JFrame {
     private void fecharHomeFrame() {
         int resposta = JOptionPane.showConfirmDialog(
                 this,
-                "Você deseja Sair da aplicação?",
+                "Você deseja sair da aplicação?",
                 "Muita Atenção!!!",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.YES_NO_OPTION);
