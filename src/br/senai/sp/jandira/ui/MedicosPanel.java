@@ -19,7 +19,7 @@ public class MedicosPanel extends javax.swing.JPanel {
     public MedicosPanel() {
         initComponents();
         MedicoDAO.criarListaDeMedico();
-        preencherTabela();
+        preencherTabelaMedicos();
     }
     
      private int getLinha() {
@@ -105,7 +105,11 @@ public class MedicosPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_buttobEditarMedicoActionPerformed
 
     private void buttonNovoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovoMedicoActionPerformed
-        
+        MedicosDialog medicosdialog = new MedicosDialog(null,
+                true,
+                OperacaoEnum.ADICIONAR);
+        medicosdialog.setVisible(true);
+        preencherTabelaMedicos();
         
     }//GEN-LAST:event_buttonNovoMedicoActionPerformed
 
@@ -117,14 +121,14 @@ public class MedicosPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane scroolEspecialidades;
     private javax.swing.JTable tableMedicos;
     // End of variables declaration//GEN-END:variables
-private void preencherTabela() {
+private void preencherTabelaMedicos() {
 
         tableMedicos.setModel(MedicoDAO.getMedicoPanel());
-        ajustarTabela();
+        ajustarTabelaMedicos();
         tableMedicos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
 
-    private void ajustarTabela() {
+    private void ajustarTabelaMedicos() {
         // Impedir que o usuário ajuste as colunas
         tableMedicos.getTableHeader().setReorderingAllowed(false);
         

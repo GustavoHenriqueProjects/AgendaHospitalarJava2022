@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -150,6 +151,8 @@ public class MedicoDAO {
             dados[i][1] = m.getNome();
             dados[i][2] = m.getTelefone();
             dados[i][3] = m.getCrm();
+//            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//            dados[i][4] = m.getDataDeNascimento().format(formato);
 
         }
         return new DefaultTableModel(dados, titulo);
