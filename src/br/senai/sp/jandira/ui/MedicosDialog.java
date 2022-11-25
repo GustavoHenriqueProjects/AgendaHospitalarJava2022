@@ -5,6 +5,7 @@ import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.OperacaoEnum;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
@@ -19,7 +20,8 @@ public class MedicosDialog extends javax.swing.JDialog {
     private OperacaoEnum operacao;
 
     //Metodos construtores
-    public MedicosDialog(java.awt.Frame parent,
+    public MedicosDialog(
+            java.awt.Frame parent,
             boolean modal,
             Medico m,
             OperacaoEnum operacao) {
@@ -34,9 +36,13 @@ public class MedicosDialog extends javax.swing.JDialog {
         this.operacao = operacao;
     }
 
-    public MedicosDialog(java.awt.Frame parent, boolean modal, OperacaoEnum operacao) {
+    public MedicosDialog(java.awt.Frame parent,
+            boolean modal,
+            OperacaoEnum operacao) {
+        
         super(parent, modal);
         initComponents();
+        
         this.operacao = operacao;
         preencherTitulo();
     }
@@ -46,6 +52,7 @@ public class MedicosDialog extends javax.swing.JDialog {
         jTextFieldNomeDoMedico.setText(medico.getNome());
         jTextFieldEmail.setText(medico.getEmail());
         jTextFieldTelefone.setText(medico.getTelefone());
+        formattedTextFieldDataDeNascimento.setText(medico.getDataDeNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 
     private void preencherTitulo() {
@@ -74,7 +81,6 @@ public class MedicosDialog extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldDataNascimento = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextFieldNomeDoMedico = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -87,6 +93,7 @@ public class MedicosDialog extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextFieldCRM = new javax.swing.JTextField();
+        formattedTextFieldDataDeNascimento = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -186,15 +193,6 @@ public class MedicosDialog extends javax.swing.JDialog {
         jPanelContent.add(jLabel5);
         jLabel5.setBounds(210, 120, 50, 20);
 
-        jTextFieldDataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextFieldDataNascimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDataNascimentoActionPerformed(evt);
-            }
-        });
-        jPanelContent.add(jTextFieldDataNascimento);
-        jTextFieldDataNascimento.setBounds(580, 150, 130, 30);
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Data de nascimento:");
         jPanelContent.add(jLabel6);
@@ -243,12 +241,20 @@ public class MedicosDialog extends javax.swing.JDialog {
         jButton2.setBounds(210, 240, 50, 31);
         jPanelContent.add(jTextFieldCRM);
         jTextFieldCRM.setBounds(210, 70, 140, 30);
+        jPanelContent.add(formattedTextFieldDataDeNascimento);
+        formattedTextFieldDataDeNascimento.setBounds(580, 150, 130, 30);
+        try {
+            formattedTextFieldDataDeNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(
+                new javax.swing.text.MaskFormatter("##/##/####")));
+    } catch (java.text.ParseException ex) {
+        ex.printStackTrace();
+    }
 
-        getContentPane().add(jPanelContent);
-        jPanelContent.setBounds(20, 90, 740, 380);
+    getContentPane().add(jPanelContent);
+    jPanelContent.setBounds(20, 90, 740, 380);
 
-        setSize(new java.awt.Dimension(794, 533));
-        setLocationRelativeTo(null);
+    setSize(new java.awt.Dimension(794, 533));
+    setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
@@ -264,7 +270,7 @@ public class MedicosDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu número de telefone.");
         } else if (jTextFieldEmail.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu e-mail.");
-        } else if (jTextFieldDataNascimento.getText().isEmpty()) {
+        } else if (formattedTextFieldDataDeNascimento.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Digite sua data de nascimento");
         } else {
             if (operacao == OperacaoEnum.ADICIONAR) {
@@ -283,6 +289,7 @@ public class MedicosDialog extends javax.swing.JDialog {
         novoMedico.setNome(jTextFieldNomeDoMedico.getText());
         novoMedico.setTelefone(jTextFieldTelefone.getText());
         novoMedico.setEmail(jTextFieldEmail.getText());
+        novoMedico.setDataDeNascimento(LocalDate.parse(formattedTextFieldDataDeNascimento.getText(),DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         
         MedicoDAO.gravar(novoMedico);
 
@@ -306,10 +313,6 @@ public class MedicosDialog extends javax.swing.JDialog {
     private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEmailActionPerformed
-
-    private void jTextFieldDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDataNascimentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDataNascimentoActionPerformed
 
     private void jTextFieldNomeDoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeDoMedicoActionPerformed
         // TODO add your handling code here:
@@ -359,6 +362,7 @@ public class MedicosDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IconeLabel;
+    private javax.swing.JFormattedTextField formattedTextFieldDataDeNascimento;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonCancelar;
@@ -380,7 +384,6 @@ public class MedicosDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextFieldCRM;
     private javax.swing.JTextField jTextFieldCodigoMedico;
-    private javax.swing.JTextField jTextFieldDataNascimento;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNomeDoMedico;
     private javax.swing.JTextField jTextFieldTelefone;

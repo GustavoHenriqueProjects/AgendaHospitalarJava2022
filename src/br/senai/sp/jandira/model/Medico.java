@@ -1,7 +1,6 @@
 package br.senai.sp.jandira.model;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 
 public class Medico {
 
@@ -14,7 +13,7 @@ public class Medico {
     private Integer codigo;
     private LocalDate dataDeNascimento;
     private static int contador = 0;
-    private static int quantidade;
+
 
     //Construtor
 //    public Medico(Integer codigo, String crm, String nome, String telefone){
@@ -44,7 +43,6 @@ public class Medico {
     }
 
     public Medico() {
-        this.quantidade++;
         gerarCodigo();
     }
 
@@ -106,8 +104,8 @@ public class Medico {
         return contador;
     }
 
-    public LocalDate setDataDeNascimento() {
-        return dataDeNascimento;
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
     }
 
     public LocalDate getDataDeNascimento() {
@@ -120,8 +118,7 @@ public class Medico {
                 + this.telefone + ";"
                 + this.email + ";"
                 + this.crm + ";"
-                + this.dataDeNascimento + ";"
-                + Arrays.toString(this.especialidade);
+                + this.dataDeNascimento;
     }
 
 }
