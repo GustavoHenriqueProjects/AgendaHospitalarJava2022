@@ -17,39 +17,39 @@ public class MedicosDialog extends javax.swing.JDialog {
     //atributos
     private Medico medico;
     private OperacaoEnum operacao;
-    
+
     //Metodos construtores
-    public MedicosDialog(java.awt.Frame parent, 
-            boolean modal ,
+    public MedicosDialog(java.awt.Frame parent,
+            boolean modal,
             Medico m,
             OperacaoEnum operacao) {
         super(parent,
-                modal );
-        
+                modal);
+
         initComponents();
-        
+
         medico = m;
-        
+
         preencheFormularioMedico();
-       this.operacao = operacao;
+        this.operacao = operacao;
     }
-    
-       public MedicosDialog (java.awt.Frame parent, boolean modal, OperacaoEnum operacao) {
+
+    public MedicosDialog(java.awt.Frame parent, boolean modal, OperacaoEnum operacao) {
         super(parent, modal);
         initComponents();
         this.operacao = operacao;
         preencherTitulo();
     }
-    
-    private void preencheFormularioMedico(){
+
+    private void preencheFormularioMedico() {
         jTextFieldCodigoMedico.setText(medico.getCodigo().toString());
         jTextFieldNomeDoMedico.setText(medico.getNome());
         jTextFieldEmail.setText(medico.getEmail());
         jTextFieldTelefone.setText(medico.getTelefone());
     }
-    
-    private void preencherTitulo(){
-            jLabelTitulo.setText("Plano médico - " + operacao);
+
+    private void preencherTitulo() {
+        jLabelTitulo.setText("Plano médico - " + operacao);
         if (operacao == OperacaoEnum.EDITAR) {
             IconeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/edit32.png")));
         } else {
@@ -57,7 +57,6 @@ public class MedicosDialog extends javax.swing.JDialog {
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -99,7 +98,7 @@ public class MedicosDialog extends javax.swing.JDialog {
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabelTitulo.setText("MÉDICO - ADICIONAR");
         jPanel1.add(jLabelTitulo);
-        jLabelTitulo.setBounds(70, 20, 270, 32);
+        jLabelTitulo.setBounds(70, 20, 340, 32);
 
         IconeLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/Button-Adicionar.png"))); // NOI18N
         IconeLabel.setToolTipText("");
@@ -159,7 +158,6 @@ public class MedicosDialog extends javax.swing.JDialog {
         jPanelContent.add(jLabel3);
         jLabel3.setBounds(30, 40, 50, 20);
 
-        jTextFieldTelefone.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldTelefone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +172,6 @@ public class MedicosDialog extends javax.swing.JDialog {
         jPanelContent.add(jLabel4);
         jLabel4.setBounds(30, 120, 70, 20);
 
-        jTextFieldEmail.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +186,6 @@ public class MedicosDialog extends javax.swing.JDialog {
         jPanelContent.add(jLabel5);
         jLabel5.setBounds(210, 120, 50, 20);
 
-        jTextFieldDataNascimento.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldDataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldDataNascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,7 +200,6 @@ public class MedicosDialog extends javax.swing.JDialog {
         jPanelContent.add(jLabel6);
         jLabel6.setBounds(580, 120, 130, 20);
 
-        jTextFieldNomeDoMedico.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldNomeDoMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextFieldNomeDoMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,37 +256,34 @@ public class MedicosDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        if(jTextFieldCRM.getText().isEmpty()){
+        if (jTextFieldCRM.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite o seu CRM.");
-        }
-        else if(jTextFieldNomeDoMedico.getText().isEmpty()){
+        } else if (jTextFieldNomeDoMedico.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu nome.");
-        }
-        else if(jTextFieldTelefone.getText().isEmpty()){
+        } else if (jTextFieldTelefone.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu número de telefone.");
-        }
-        else if(jTextFieldEmail.getText().isEmpty()){
+        } else if (jTextFieldEmail.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu e-mail.");
-        }
-        else if(jTextFieldDataNascimento.getText().isEmpty()){
+        } else if (jTextFieldDataNascimento.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Digite sua data de nascimento");
-        } else{
-            if(operacao == OperacaoEnum.ADICIONAR){
+        } else {
+            if (operacao == OperacaoEnum.ADICIONAR) {
                 adicionar();
-            }else{
-               
+            } else {
+
             }
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
- private void adicionar() {
-     
-      DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-      Medico novoMedico = new Medico();
+    private void adicionar() {
+
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        Medico novoMedico = new Medico();
+
         novoMedico.setCrm(jTextFieldCRM.getText());
         novoMedico.setNome(jTextFieldNomeDoMedico.getText());
         novoMedico.setTelefone(jTextFieldTelefone.getText());
-//        novoMedico.setDataDeNascimento(LocalDate.parse(jTextFieldDataNascimento.getText(),
-//                DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        novoMedico.setEmail(jTextFieldEmail.getText());
+        
         MedicoDAO.gravar(novoMedico);
 
         JOptionPane.showMessageDialog(

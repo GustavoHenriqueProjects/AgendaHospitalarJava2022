@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.model;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class Medico {
 
@@ -14,24 +15,35 @@ public class Medico {
     private LocalDate dataDeNascimento;
     private static int contador = 0;
     private static int quantidade;
-    
+
     //Construtor
-    public Medico(String nome, String telefone, String crm){
+//    public Medico(Integer codigo, String crm, String nome, String telefone){
+//     
+//        this.codigo = codigo;
+//        this.nome = nome;
+//        this.telefone = telefone;
+//        this.crm = crm;
+//        gerarCodigo();
+//    }
+    public Medico(Integer codigo, String nome, String telefone, String crm) {
+        this.codigo = codigo;
         this.nome = nome;
         this.telefone = telefone;
         this.crm = crm;
         gerarCodigo();
     }
-    
-     public Medico(String nome, String telefone, String crm,String email, LocalDate dataDeNascimento){
+
+    public Medico(Integer codigo, String crm, String nome, String telefone, String email, LocalDate dataDeNascimento) {
+        this.codigo = codigo;
+        this.crm = crm;
         this.nome = nome;
         this.telefone = telefone;
-        this.crm = crm;
         this.email = email;
-        this.codigo = codigo;
+        this.dataDeNascimento = dataDeNascimento;
+        
     }
-     
-      public Medico() {
+
+    public Medico() {
         this.quantidade++;
         gerarCodigo();
     }
@@ -93,12 +105,12 @@ public class Medico {
     public static int getContador() {
         return contador;
     }
-    
-    public LocalDate setDataDeNascimento(){
+
+    public LocalDate setDataDeNascimento() {
         return dataDeNascimento;
     }
-    
-     public LocalDate getDataDeNascimento() {
+
+    public LocalDate getDataDeNascimento() {
         return dataDeNascimento;
     }
 
@@ -108,8 +120,8 @@ public class Medico {
                 + this.telefone + ";"
                 + this.email + ";"
                 + this.crm + ";"
-                + this.dataDeNascimento+";"
-                +this.especialidade;
+                + this.dataDeNascimento + ";"
+                + Arrays.toString(this.especialidade);
     }
 
 }
