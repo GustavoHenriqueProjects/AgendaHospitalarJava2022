@@ -76,7 +76,7 @@ public class MedicoDAO {
                 break;
             }
         }
-        //atualizarArquivo();
+        atualizarArquivo();
     }
 
     //Criando instancia excluir
