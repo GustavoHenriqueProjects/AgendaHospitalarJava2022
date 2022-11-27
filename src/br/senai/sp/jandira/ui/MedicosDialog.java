@@ -34,6 +34,7 @@ public class MedicosDialog extends javax.swing.JDialog {
 
         preencheFormularioMedico();
         this.operacao = operacao;
+        preencherTitulo();
     }
 
     public MedicosDialog(java.awt.Frame parent,
@@ -52,6 +53,7 @@ public class MedicosDialog extends javax.swing.JDialog {
         jTextFieldNomeDoMedico.setText(medico.getNome());
         jTextFieldEmail.setText(medico.getEmail());
         jTextFieldTelefone.setText(medico.getTelefone());
+        jTextFieldCRM.setText(medico.getCrm());
         formattedTextFieldDataDeNascimento.setText(medico.getDataDeNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 
@@ -276,7 +278,7 @@ public class MedicosDialog extends javax.swing.JDialog {
             if (operacao == OperacaoEnum.ADICIONAR) {
                 adicionar();
             } else {
-
+                editarMedico();
             }
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
@@ -301,6 +303,19 @@ public class MedicosDialog extends javax.swing.JDialog {
 
         dispose();
 
+    }
+    
+    private void editarMedico(){
+        medico.setCrm(jTextFieldCRM.getText());
+        medico.setNome(jTextFieldNomeDoMedico.getText());
+        medico.setTelefone(jTextFieldTelefone.getText());
+        medico.setEmail(jTextFieldEmail.getText());
+        medico.setDataDeNascimento(LocalDate.parse(formattedTextFieldDataDeNascimento.getText(),DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        
+        MedicoDAO.atualizar(medico);
+        JOptionPane.showMessageDialog(null, "Médico(a) atualizado com sucesso!", "Médico(a)", JOptionPane.WARNING_MESSAGE);
+        
+        dispose();
     }
     private void jTextFieldCodigoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoMedicoActionPerformed
         // TODO add your handling code here:

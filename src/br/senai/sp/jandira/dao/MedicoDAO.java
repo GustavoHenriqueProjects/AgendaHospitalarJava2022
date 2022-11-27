@@ -134,11 +134,15 @@ public class MedicoDAO {
             while (linha != null) {
                 //Tranformando as informaçoes da linha em especialidade]
                 String[] vetor = linha.split(";");
+                String[] data = vetor[5].split("-"); //data
+                
                 Medico m = new Medico(
                         Integer.valueOf(vetor[0]), 
-                        vetor[1], 
-                        vetor[2], 
-                        vetor[3]);
+                        vetor[4], // CRM
+                        vetor[1], //Nome do medico 1 , 2 telefone, 3 e-mail, 4 crm,  5 data de nascimento.
+                        vetor[2], //Telefone
+                        vetor[3],//email;
+                        LocalDate.of(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])));
 
                 //Guardando as especialidades na lista
                 medicos.add(m);

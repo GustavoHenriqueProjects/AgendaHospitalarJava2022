@@ -5,6 +5,7 @@
 package br.senai.sp.jandira.ui;
 
 import br.senai.sp.jandira.dao.MedicoDAO;
+import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.OperacaoEnum;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -121,10 +122,30 @@ public class MedicosPanel extends javax.swing.JPanel {
         }
     }
     private void buttobEditarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttobEditarMedicoActionPerformed
-
+        if(getLinha()!= -1){
+            editarMedico();
+        }else{
+            JOptionPane.showMessageDialog(
+                    null, 
+                    "Por favor selecione a especialidade médica que você deseja editar.",
+                    "Atenção",
+                    JOptionPane.WARNING_MESSAGE);
+        }
 
     }//GEN-LAST:event_buttobEditarMedicoActionPerformed
-
+    private void editarMedico(){
+        Medico medico = MedicoDAO.getMedico(getCodigo());
+        
+        MedicosDialog medicosDialog = new MedicosDialog(
+                null, 
+                true, 
+                medico,
+                OperacaoEnum.EDITAR);
+        
+        medicosDialog.setVisible(true);
+        
+        preencherTabelaMedicos();
+    }
     private void buttonNovoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNovoMedicoActionPerformed
         MedicosDialog medicosdialog = new MedicosDialog(null,
                 true,

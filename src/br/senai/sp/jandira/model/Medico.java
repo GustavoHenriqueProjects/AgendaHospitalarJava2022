@@ -24,21 +24,32 @@ public class Medico {
 //        this.crm = crm;
 //        gerarCodigo();
 //    }
-    public Medico(Integer codigo, String nome, String telefone, String crm) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.crm = crm;
-        gerarCodigo();
-    }
-
-    public Medico(Integer codigo, String crm, String nome, String telefone, String email, LocalDate dataDeNascimento) {
+//    public Medico(Integer codigo, String nome, String telefone, String crm) {
+//        this.codigo = codigo;
+//        this.nome = nome;
+//        this.telefone = telefone;
+//        this.crm = crm;
+//        gerarCodigo();
+//    }
+    
+    public Medico(Integer codigo,String crm, String nome, String telefone, String email,LocalDate dataDeNascimento){
         this.codigo = codigo;
         this.crm = crm;
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
         this.dataDeNascimento = dataDeNascimento;
+        gerarCodigo();
+    }
+
+    public Medico(Integer codigo, String crm, String nome, String telefone, String email, LocalDate dataDeNascimento, Especialidade[] especialidades) {
+        this.codigo = codigo;
+        this.crm = crm;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.dataDeNascimento = dataDeNascimento;
+        this.especialidade = especialidades;
         
     }
 
