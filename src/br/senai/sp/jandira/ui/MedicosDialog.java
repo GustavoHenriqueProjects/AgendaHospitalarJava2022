@@ -5,8 +5,6 @@ import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.OperacaoEnum;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,7 +50,7 @@ public class MedicosDialog extends javax.swing.JDialog {
         jTextFieldCodigoMedico.setText(medico.getCodigo().toString());
         jTextFieldNomeDoMedico.setText(medico.getNome());
         jTextFieldEmail.setText(medico.getEmail());
-        jTextFieldTelefone.setText(medico.getTelefone());
+        jFormattedTextFieldTelefone.setText(medico.getTelefone());
         jTextFieldCRM.setText(medico.getCrm());
         formattedTextFieldDataDeNascimento.setText(medico.getDataDeNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
@@ -79,7 +77,6 @@ public class MedicosDialog extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jTextFieldCodigoMedico = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldTelefone = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -96,6 +93,7 @@ public class MedicosDialog extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         jTextFieldCRM = new javax.swing.JTextField();
         formattedTextFieldDataDeNascimento = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldTelefone = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -166,15 +164,6 @@ public class MedicosDialog extends javax.swing.JDialog {
         jLabel3.setText("Código");
         jPanelContent.add(jLabel3);
         jLabel3.setBounds(30, 40, 50, 20);
-
-        jTextFieldTelefone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextFieldTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldTelefoneActionPerformed(evt);
-            }
-        });
-        jPanelContent.add(jTextFieldTelefone);
-        jTextFieldTelefone.setBounds(30, 150, 160, 30);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Telefone:");
@@ -256,6 +245,14 @@ public class MedicosDialog extends javax.swing.JDialog {
     } catch (java.text.ParseException ex) {
         ex.printStackTrace();
     }
+    jPanelContent.add(jFormattedTextFieldTelefone);
+    jFormattedTextFieldTelefone.setBounds(30, 150, 170, 30);
+    try {
+        jFormattedTextFieldTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(
+            new javax.swing.text.MaskFormatter("(##)#####-####")));
+    } catch (java.text.ParseException ex) {
+        ex.printStackTrace();
+    }
 
     getContentPane().add(jPanelContent);
     jPanelContent.setBounds(20, 90, 740, 380);
@@ -275,10 +272,10 @@ public class MedicosDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite o seu CRM.");
         } else if (jTextFieldNomeDoMedico.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu nome.");
-        } else if (jTextFieldTelefone.getText().isEmpty()) {
+        } else if (jFormattedTextFieldTelefone.getText().contains(s) == true) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu número de telefone.");
-        } else if(jTextFieldTelefone.getText().matches("[A-Za-z-]+")){
-            JOptionPane.showMessageDialog(null, "Atenção, digie seu número de telefone nesse formato:(##) #####-####.");
+        } else if(jFormattedTextFieldTelefone.getText().matches("[A-Za-z-]+")){
+            JOptionPane.showMessageDialog(null, "Atenção, digite seu número de telefone nesse formato:(##) #####-####.");
         } else if (jTextFieldEmail.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu e-mail.");
         }else if (formattedTextFieldDataDeNascimento.getText().contains(s) == true) {
@@ -293,12 +290,13 @@ public class MedicosDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
     private void adicionar() {
 
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formato  = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
         Medico novoMedico = new Medico();
 
         novoMedico.setCrm(jTextFieldCRM.getText());
         novoMedico.setNome(jTextFieldNomeDoMedico.getText());
-        novoMedico.setTelefone(jTextFieldTelefone.getText());
+        novoMedico.setTelefone(jFormattedTextFieldTelefone.getText());
         novoMedico.setEmail(jTextFieldEmail.getText());
         novoMedico.setDataDeNascimento(LocalDate.parse(formattedTextFieldDataDeNascimento.getText(),DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         
@@ -317,7 +315,7 @@ public class MedicosDialog extends javax.swing.JDialog {
     private void editarMedico(){
         medico.setCrm(jTextFieldCRM.getText());
         medico.setNome(jTextFieldNomeDoMedico.getText());
-        medico.setTelefone(jTextFieldTelefone.getText());
+        medico.setTelefone(jFormattedTextFieldTelefone.getText());
         medico.setEmail(jTextFieldEmail.getText());
         medico.setDataDeNascimento(LocalDate.parse(formattedTextFieldDataDeNascimento.getText(),DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         
@@ -329,10 +327,6 @@ public class MedicosDialog extends javax.swing.JDialog {
     private void jTextFieldCodigoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoMedicoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCodigoMedicoActionPerformed
-
-    private void jTextFieldTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldTelefoneActionPerformed
 
     private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
         // TODO add your handling code here:
@@ -395,6 +389,7 @@ public class MedicosDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JFormattedTextField jFormattedTextFieldTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -414,6 +409,5 @@ public class MedicosDialog extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldCodigoMedico;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNomeDoMedico;
-    private javax.swing.JTextField jTextFieldTelefone;
     // End of variables declaration//GEN-END:variables
 }
