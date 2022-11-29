@@ -264,16 +264,20 @@ public class MedicosDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        CharSequence s = " ";
+        
         if (jTextFieldCRM.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite o seu CRM.");
         } else if (jTextFieldNomeDoMedico.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu nome.");
         } else if (jTextFieldTelefone.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu número de telefone.");
+            JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu número de telefone nesse formato:(##) #####-####.");
+        } else if(jTextFieldTelefone.getText().matches("[A-Za-z-]")){
+            JOptionPane.showMessageDialog(null, "Atenção, digie seu número de telefone nesse formato:(##) #####-####.");
         } else if (jTextFieldEmail.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu e-mail.");
-        } else if (formattedTextFieldDataDeNascimento.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Digite sua data de nascimento");
+        }else if (formattedTextFieldDataDeNascimento.getText().contains(s) == true) {
+            JOptionPane.showMessageDialog(this, "Digite sua data de nascimento");   
         } else {
             if (operacao == OperacaoEnum.ADICIONAR) {
                 adicionar();

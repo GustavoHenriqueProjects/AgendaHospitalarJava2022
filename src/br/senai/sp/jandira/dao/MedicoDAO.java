@@ -18,11 +18,11 @@ public class MedicoDAO {
 
     //Seleciona o local do arquivo txt onde as informações do médico serão salvas
     private final static String URL
-            = "C:\\Users\\sarna\\OneDrive\\Área de Trabalho\\teste.txt";
+            = "C:\\Users\\22282186\\JavaBanco\\medico.txt";
 
     //Arquivo temporario que sera criado pelo netbeans
     private final static String URL_TEMP
-            = "C:\\Users\\sarna\\OneDrive\\Área de Trabalho\\teste-TEMP.txt";
+            = "C:\\Users\\22282186\\JavaBanco\\Medico-TEMP.txt";
 
     private final static Path PATH = Paths.get(URL);
     private final static Path PATH_TEMP = Paths.get(URL_TEMP);
