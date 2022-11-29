@@ -239,6 +239,11 @@ public class MedicosDialog extends javax.swing.JDialog {
         jButton1.setBounds(210, 290, 50, 31);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/imagens/seta-direita.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanelContent.add(jButton2);
         jButton2.setBounds(210, 240, 50, 31);
         jPanelContent.add(jTextFieldCRM);
@@ -271,8 +276,8 @@ public class MedicosDialog extends javax.swing.JDialog {
         } else if (jTextFieldNomeDoMedico.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu nome.");
         } else if (jTextFieldTelefone.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu número de telefone nesse formato:(##) #####-####.");
-        } else if(jTextFieldTelefone.getText().matches("[A-Za-z-]")){
+            JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu número de telefone.");
+        } else if(jTextFieldTelefone.getText().matches("[A-Za-z-]+")){
             JOptionPane.showMessageDialog(null, "Atenção, digie seu número de telefone nesse formato:(##) #####-####.");
         } else if (jTextFieldEmail.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu e-mail.");
@@ -336,6 +341,10 @@ public class MedicosDialog extends javax.swing.JDialog {
     private void jTextFieldNomeDoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeDoMedicoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomeDoMedicoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

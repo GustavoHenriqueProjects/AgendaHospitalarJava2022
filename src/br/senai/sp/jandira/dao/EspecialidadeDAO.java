@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.dao;
 import br.senai.sp.jandira.model.Especialidade;
+import br.senai.sp.jandira.ui.EspecialidadesPanel;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,6 +23,8 @@ public class EspecialidadeDAO {
     private final static Path PATH_TEMP = Paths.get(URL_TEMP);
     
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
+
+    DefaultTableModel listModel = new DefaultTableModel();
 
     public static void gravar(Especialidade e) { //CREATE
         especialidades.add(e);
