@@ -16,10 +16,10 @@ import javax.swing.table.DefaultTableModel;
 public class EspecialidadeDAO {
     //Final uma variavel nunca pode ser alterada
     private final static String URL = 
-            "C:\\Users\\22282186\\JavaBanco\\Especialidade.txt";
+            "C:\\Users\\sarna\\OneDrive\\Área de Trabalho\\Java\\Especialidade.txt";
     private final static Path PATH = Paths.get(URL);
     private final static String URL_TEMP = 
-            "C:\\Users\\22282186\\JavaBanco\\Especialidade-temp.txt";
+            "C:\\Users\\sarna\\OneDrive\\Área de Trabalho\\Java\\Especialidade-TEMP.txt";
     private final static Path PATH_TEMP = Paths.get(URL_TEMP);
     
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
@@ -185,13 +185,16 @@ public class EspecialidadeDAO {
 
     }
     
+    //Criando o contrutor da jlist
     public static DefaultListModel<Especialidade> preencherEspecialidade(){
         //Criando objeto lista de especialidedes que sera exibida no médico
         DefaultListModel<Especialidade> listaDeEspecialidade = new DefaultListModel<>();
         for(Especialidade listas : getEspecialidades()){
             
+            //O metodo addElement é usado para adicionar elemento especifico ao vetor
             listaDeEspecialidade.addElement(listas);
             listaDeEspecialidade.toString();
+           
         }
         return listaDeEspecialidade;
     }

@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.dao;
 
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Medico;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,6 +12,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,11 +20,11 @@ public class MedicoDAO {
 
     //Seleciona o local do arquivo txt onde as informações do médico serão salvas
     private final static String URL
-            = "C:\\Users\\22282186\\JavaBanco\\medico.txt";
+            = "C:\\Users\\sarna\\OneDrive\\Área de Trabalho\\Java\\Medico.txt";
 
     //Arquivo temporario que sera criado pelo netbeans
     private final static String URL_TEMP
-            = "C:\\Users\\22282186\\JavaBanco\\Medico-TEMP.txt";
+            = "C:\\Users\\sarna\\OneDrive\\Área de Trabalho\\Java\\Medico-TEMO.txt";
 
     private final static Path PATH = Paths.get(URL);
     private final static Path PATH_TEMP = Paths.get(URL_TEMP);
@@ -59,7 +61,7 @@ public class MedicoDAO {
         return medicos;
     }
 
-    //Nesse for se o codigo seledionado for iqual ao do codigo do medico é para me retorna o valor
+    //Nesse for se o codigo selecionado for iqual ao do codigo do medico é para me retorna o valor
     public static Medico getMedico(Integer codigo) {
         for (Medico m : medicos) {
             if (m.getCodigo().equals(codigo)) {
@@ -124,6 +126,19 @@ public class MedicoDAO {
         }
     }
 
+    public static ArrayList<Especialidade> separarEspecialidades(String linha) {
+        String[] vetor = linha.split(";");
+        int codicoDaEspecialidade = 6;
+
+        ArrayList<Especialidade> especialidades = new ArrayList<>();
+
+        while (vetor.length > codicoDaEspecialidade) {
+            especialidades.add(EspecialidadeDAO.getEspecialidade(Integer.valueOf(vetor[codicoDaEspecialidade])));
+            codicoDaEspecialidade++;
+        }
+        return especialidades;
+    }
+
     public static void criarListaDeMedico() {
 
         try {
@@ -135,14 +150,15 @@ public class MedicoDAO {
                 //Tranformando as informaçoes da linha em especialidade]
                 String[] vetor = linha.split(";");
                 String[] data = vetor[5].split("-"); //data
-                
+
                 Medico m = new Medico(
-                        Integer.valueOf(vetor[0]), 
+                        Integer.valueOf(vetor[0]),
                         vetor[4], // CRM
                         vetor[1], //Nome do medico 1 , 2 telefone, 3 e-mail, 4 crm,  5 data de nascimento.
                         vetor[2], //Telefone
                         vetor[3],//email;
-                        LocalDate.of(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])));
+                        LocalDate.of(Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2])),
+                        separarEspecialidades(linha));
 
                 //Guardando as especialidades na lista
                 medicos.add(m);
@@ -151,14 +167,14 @@ public class MedicoDAO {
                 linha = leitor.readLine();
 
             }
-            
+
             //Fechando leitor
             leitor.close();
 
         } catch (IOException erro) {
-            
+
             JOptionPane.showMessageDialog(
-                    null, 
+                    null,
                     "Ocorre um erro com o seu arquivo ");
         }
 
@@ -173,6 +189,28 @@ public class MedicoDAO {
 //        medicos.add(m4);
 //        
 //        System.out.println(medicos.size());
+    }
+    
+    public static DefaultListModel<Especialidade> getEspecialidadeModel(){
+        DefaultListModel<Especialidade> especialidadesListas = new DefaultListModel<Especialidade>();
+        
+        try {
+            //lê o texto e armagena caracteres
+            BufferedReader leitor = Files.newBufferedReader(PATH);
+            
+            String linha = leitor.readLine();
+            
+            for(Especialidade e: separarEspecialidades(linha)){
+                especialidadesListas.addElement(e);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                    null, 
+                    "Erro ão ler arquivo",
+                    "Erro",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+        return especialidadesListas;
     }
 
     public static DefaultTableModel getMedicoPanel() {
@@ -191,11 +229,9 @@ public class MedicoDAO {
             dados[i][1] = m.getNome();
             dados[i][2] = m.getCrm();
             dados[i][3] = m.getTelefone();
-           
-            
+
 //            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 //            dados[i][4] = m.getDataDeNascimento().format(formato);
-
         }
         return new DefaultTableModel(dados, titulo);
     }
