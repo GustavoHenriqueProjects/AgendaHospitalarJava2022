@@ -1,10 +1,14 @@
 package br.senai.sp.jandira.ui;
 
+import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.dao.MedicoDAO;
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.OperacaoEnum;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,6 +36,7 @@ public class MedicosDialog extends javax.swing.JDialog {
 
         preencheFormularioMedico();
         this.operacao = operacao;
+        preencherListaDeEspecialidadesMedicas();
         preencherTitulo();
     }
 
@@ -43,7 +48,12 @@ public class MedicosDialog extends javax.swing.JDialog {
         initComponents();
         
         this.operacao = operacao;
+        preencherListaDeEspecialidadesMedicas();
         preencherTitulo();
+    }
+    
+    private void preencherListaDeEspecialidadesMedicas(){
+        jListEspecialidades.setModel(EspecialidadeDAO.preencherEspecialidade());
     }
 
     private void preencheFormularioMedico() {
@@ -88,7 +98,7 @@ public class MedicosDialog extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListEspecialidades = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextFieldCRM = new javax.swing.JTextField();
@@ -218,7 +228,7 @@ public class MedicosDialog extends javax.swing.JDialog {
         jPanelContent.add(jScrollPane1);
         jScrollPane1.setBounds(290, 230, 150, 140);
 
-        jScrollPane2.setViewportView(jList1);
+        jScrollPane2.setViewportView(jListEspecialidades);
 
         jPanelContent.add(jScrollPane2);
         jScrollPane2.setBounds(30, 230, 150, 140);
@@ -288,6 +298,15 @@ public class MedicosDialog extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+    private ArrayList<Especialidade> pegarEspecialidades(JList<Especialidade> lista){
+        int tamanho = lista.getModel().getSize();
+        ArrayList<Especialidade> listaNova = new ArrayList();
+        for(int i = 0; i< tamanho; i++){
+            listaNova.add(lista.getModel().getElementAt(i));
+        }
+        return listaNova;
+    }
+    
     private void adicionar() {
 
         DateTimeFormatter formato  = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -399,8 +418,8 @@ public class MedicosDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
+    private javax.swing.JList<Especialidade> jListEspecialidades;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelContent;
     private javax.swing.JScrollPane jScrollPane1;
