@@ -70,7 +70,7 @@ public class MedicosDialog extends javax.swing.JDialog {
         jTextFieldNomeDoMedico.setText(medico.getNome());
         jTextFieldEmail.setText(medico.getEmail());
         jFormattedTextFieldTelefone.setText(medico.getTelefone());
-        jTextFieldCRM.setText(medico.getCrm());
+        jFormattedTextFieldCRM.setText(medico.getCrm());
         formattedTextFieldDataDeNascimento.setText(medico.getDataDeNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
         preencherListaDeEspecialidadesMedicas();
@@ -112,9 +112,9 @@ public class MedicosDialog extends javax.swing.JDialog {
         jListEspecialidades = new javax.swing.JList<>();
         jButtonExcluirEspecialidade = new javax.swing.JButton();
         jButtonAdicionarEspecialidade = new javax.swing.JButton();
-        jTextFieldCRM = new javax.swing.JTextField();
         formattedTextFieldDataDeNascimento = new javax.swing.JFormattedTextField();
         jFormattedTextFieldTelefone = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldCRM = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -261,8 +261,6 @@ public class MedicosDialog extends javax.swing.JDialog {
         });
         jPanelContent.add(jButtonAdicionarEspecialidade);
         jButtonAdicionarEspecialidade.setBounds(210, 240, 50, 31);
-        jPanelContent.add(jTextFieldCRM);
-        jTextFieldCRM.setBounds(210, 70, 140, 30);
         jPanelContent.add(formattedTextFieldDataDeNascimento);
         formattedTextFieldDataDeNascimento.setBounds(580, 150, 130, 30);
         try {
@@ -276,6 +274,14 @@ public class MedicosDialog extends javax.swing.JDialog {
     try {
         jFormattedTextFieldTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(
             new javax.swing.text.MaskFormatter("(##)#####-####")));
+    } catch (java.text.ParseException ex) {
+        ex.printStackTrace();
+    }
+    jPanelContent.add(jFormattedTextFieldCRM);
+    jFormattedTextFieldCRM.setBounds(210, 70, 140, 30);
+    try {
+        jFormattedTextFieldCRM.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(
+            new javax.swing.text.MaskFormatter("#######-#/BR")));
     } catch (java.text.ParseException ex) {
         ex.printStackTrace();
     }
@@ -294,7 +300,7 @@ public class MedicosDialog extends javax.swing.JDialog {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         CharSequence s = " ";
 
-        if (jTextFieldCRM.getText().isEmpty()) {
+        if (jFormattedTextFieldCRM.getText().contains(s)) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite o seu CRM.");
         } else if (jTextFieldNomeDoMedico.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "POR FAVOR !!! Digite seu nome.");
@@ -331,7 +337,7 @@ public class MedicosDialog extends javax.swing.JDialog {
 
         Medico novoMedico = new Medico();
 
-        novoMedico.setCrm(jTextFieldCRM.getText());
+        novoMedico.setCrm(jFormattedTextFieldCRM.getText());
         novoMedico.setNome(jTextFieldNomeDoMedico.getText());
         novoMedico.setTelefone(jFormattedTextFieldTelefone.getText());
         novoMedico.setEmail(jTextFieldEmail.getText());
@@ -351,7 +357,7 @@ public class MedicosDialog extends javax.swing.JDialog {
     }
 
     private void editarMedico() {
-        medico.setCrm(jTextFieldCRM.getText());
+        medico.setCrm(jFormattedTextFieldCRM.getText());
         medico.setNome(jTextFieldNomeDoMedico.getText());
         medico.setTelefone(jFormattedTextFieldTelefone.getText());
         medico.setEmail(jTextFieldEmail.getText());
@@ -487,6 +493,7 @@ public class MedicosDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonExcluirEspecialidade;
     private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCRM;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -503,7 +510,6 @@ public class MedicosDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelContent;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextFieldCRM;
     private javax.swing.JTextField jTextFieldCodigoMedico;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldNomeDoMedico;

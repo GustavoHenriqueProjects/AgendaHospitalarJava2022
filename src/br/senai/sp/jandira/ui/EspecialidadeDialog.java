@@ -224,6 +224,8 @@ public class EspecialidadeDialog extends javax.swing.JDialog {
         jLabel5.setText("Código");
         jPanelContent1.add(jLabel5);
         jLabel5.setBounds(30, 40, 50, 20);
+
+        textFieldCodigo.setEditable(false);
         jPanelContent1.add(textFieldCodigo);
         textFieldCodigo.setBounds(30, 70, 90, 30);
 
