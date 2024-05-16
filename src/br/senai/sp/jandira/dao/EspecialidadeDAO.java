@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 public class EspecialidadeDAO {
     //Final uma variavel nunca pode ser alterada
 
-    //Teste de branch e realizando primeira mesclagem de branch
     private final static String URL = 
             "C:\\Users\\sarna\\OneDrive\\Área de Trabalho\\Java\\Especialidade.txt";
     private final static Path PATH = Paths.get(URL);
